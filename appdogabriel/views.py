@@ -73,6 +73,7 @@ def update_almoco(request, id):
 def delete_lanche(request, id):
   lanches = Almocos.objects.get(id = id), 
   if request.method == "POST":
+    if "confirm" in request.POST:
       lanches.delete()
       return redirect("site")
   return render(request, "areyousureLanche.html",context={lanches:"lanche"}) 
@@ -81,6 +82,7 @@ def delete_lanche(request, id):
 def delete_almoco(request, id):
   almocos = Almocos.objects.get(id = id), 
   if request.method == "POST":
+    if "confirm" in request.POST:
       almocos.delete()
       return redirect("site")
   return render(request, "areyousureAlmoco.html",context={almocos:"almoco"})
