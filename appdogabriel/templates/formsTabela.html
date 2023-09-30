@@ -1,0 +1,15 @@
+<h1>Adicionar Estabelecimento na Tabela</h1>
+
+<form method="post">
+  {% csrf_token %}
+  <div>
+    <label>Restaurante: </label>
+    <input name="restaurante">
+  </div>
+  <div>
+    <label>Nota: </label>
+    <input name="nota" type="number">
+  </div>
+
+  <input type="submit" value="Adicionar">
+</form>

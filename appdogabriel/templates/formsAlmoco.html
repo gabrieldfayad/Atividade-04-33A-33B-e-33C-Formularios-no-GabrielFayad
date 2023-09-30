@@ -1,0 +1,26 @@
+<h1>Adicionar lugares de Almoço</h1>
+
+<form method="post">
+  {% csrf_token %}
+  <div>
+    <label>Título: </label>
+    <input name="titulo">
+  </div>
+
+  <div>
+    <label>Localização: </label>
+    <input name="localizacao">
+  </div>
+
+  <div>
+    <label>Nota da Comida: </label>
+    <input name="notacomida" type="number">
+  </div>
+
+  <div>
+    <label>Nota do Preço: </label>
+    <input name="notapreco" type="number">
+  </div>
+
+  <input type="submit" value="Adicionar">
+</form>

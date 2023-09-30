@@ -1,0 +1,7 @@
+Você tem certeza que deseja remover o local de lanche {{lanches.title}}?
+
+<form method="post">
+  {% csrf_token %}
+  <input type="submit" name="confirm" value="sim">
+  <input type="submit" value="nao">
+</form>

@@ -1,0 +1,122 @@
+ <!DOCTYPE html>
+{% load static %}
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <link rel="stylesheet" href="{% static 'appdogabriel/css/style.css' %}">
+  <title>Gabriel Dourado Fayad</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@10..48,300&display=swap" rel="stylesheet">
+</head>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Merriweather&display=swap" rel="stylesheet">
+
+<body>
+  <div class="posicao_titulo">
+  <h1>Os Melhores Lugares para Comer na PUC-Rio</h1>
+  <h3><i>Por: Gabriel Dourado Fayad, graduando em Engenharia de Computação</i></h3>
+  </div>
+  <div class="posicao_desc">
+  <p style="text-align:center">Dependendo da disposição da grade horária de cada aluno ou professor, muitas vezes é necessário se alimantar no campus da universidade. Surge, dessa forma, uma dúvida: Quais são as melhores opções para fazer uma refeição na universidade? Por esse motivo, esta página foi criada com a finalidade de informar aos funcionários e alunos da PUC-Rio quais os <b>melhores lugares para comer dentro do campus</b>, levando em consideração fatores como <mark>custo-benefício</mark>, <mark>qualidade da comida</mark>, <mark>tipo de refeição</mark>, etc. As informações desta página são apenas opiniões do autor.</p>
+    <br> 
+  </div>
+  <div class="posicao_img">
+  <img src="https://oquetempracomer.com.br/wp-content/uploads/elementor/thumbs/frios-ppym43phcr6vjjw0p6015eelh9ezq7mjh1yx0agk9o.jpg" width=500
+  <img src="https://yt3.googleusercontent.com/ytc/AOPolaTh-OyNqP0z8rhVRCbhwLzQ8z470xJytJzUCB1l=s900-c-k-c0x00ffffff-no-rj" width=300 >
+   <img src="https://blog.consumer.com.br/wp-content/uploads/2020/11/culin%C3%A1ria-regional-brasileira.jpg" width=400>
+   </div>
+  <div>
+    <h2>Para um lanche rápido:</h2>
+     <!-- <ol>
+      <li><b>Barracas azuis do lado de fora</b></li>
+      <p>As barracas possuem uma grande variedade de alimentos com custo mais baixo.</p>
+      <li><b>Na Medida</b></li>
+      <p>O restaurante <i>Na Medida</i> possui uma boa variedade, sendo uma ótima opção para um lanche entre-aulas uma vez que é no próprio Cardeal Leme, onde ocorre a maior parte das aulas. Confira a  <a href="https://www.instagram.com/namedidapuc/" target="_blank" rel="noopener noreferrer">página do instagram</a> do restaurante.</p>
+      <li><b>Associação dos Funcionários</b></li>
+      <p>A associação dos funcionários da PUC-Rio tem excelentes opções para lanches com um preço muito bom. No entanto, costuma ter muita fila. Confira a  <a href="https://www.instagram.com/afpuc_rio/" target="_blank" rel="noopener noreferrer">página do instagram</a> da associação.</p>
+    </ol> -->
+<ol>
+  {% for lanche in lanches %}
+    <li>
+      {{lanche.titulo}} <a href="lanche/update/{{ lanche.id }}">Atualizar</a> <a href="lanche/delete/{{ lanche.id }}">Deletar</a>
+    </li>
+  {% endfor %}
+</ol>
+    <a href="/lanches">Adicionar Novo Local de Lanche</a>
+  </div>
+  <div>
+    <h2>Para almoçar: </h2>
+    <ul>
+      <!-- <li><b>Strogonoff da barraca azul</b></li>
+      <p>O strogonoff mais famoso da PUC-Rio. Possui opção de carne, frango ou abobrinha para os vegetarianos, além de uma série de opções de tamanho. Dependendo do horário, pode haver muita fila.</p>
+      <li><b>Yakissoba da barraca azul</b></li>
+      <p>O yakissoba da barraca azul também possui uma série de opções de ingredientes e tamanhos, mas, possui uma vantagem em relação aos outros yakissobas do campus, o preço. </p>
+      <li><b>Soba Sushi</b></li>
+      <p>O restaurante <i>Soba Sushi</i> fica ao lado do <i>Na Medida</i>, e tem opções de comida japonesa, yakissobas e pokes com um bom preço também. Dentre os listados acima, o único que possui local próprio para sentar. Porém, os pedidos costumam demorar bastante na hora do almoço.</p> -->
+      {% for almoco in almocos %}
+          <li>
+            {{almoco.titulo}} <a href="almoco/update/{{ almoco.id }}">Atualizar</a> <a href="almoco/delete/{{ almoco.id }}">Deletar</a>
+          </li>
+      {% endfor %}
+    </ul>
+    <a href="/almocos">Adicionar Novo Local de Almoço</a>
+  </div>
+  <div>
+    <h2>Outros locais dignos de nota:</h2>
+    <ul>
+      <li><b>Couve Flor</b></li>
+      <p>O restaurante <i>Couve Flor</i> é uma opção para quem quer comer uma comida de melhor qualidade a quilo, mas cuidado: o preço é bem elevado. Confira a  <a href="https://www.tripadvisor.com.br/Restaurant_Review-g303506-d3263529-Reviews-Restaurante_Couve_Flor-Rio_de_Janeiro_State_of_Rio_de_Janeiro.html" target="_blank" rel="noopener noreferrer">página do restaurante</a> no TripAdvisor.</p>
+      <li><b>Bandejão</b></li>
+      <p>O Bandejão é uma opção mais acessível: a refeição custa 12,50 (relativamente caro se comparado aos bandejões de outras universidades), mas é a opção mais barata de almoço no campus. </p>
+    </ul>
+  </div>
+  <div class="posicao_titulo">
+  <h2>Tabela geral de notas:</h2>
+  <h4>(Levando em consideração o preço, a qualidade e o espaço)</h4>
+  <table style="text-align:center">
+    <thead>
+        <tr>
+            <th>Restaurante</th>
+            <th>Nota Geral</th>
+        </tr>
+    </thead>
+    <tbody>
+      {%for item in tabela%}
+        <tr>
+            <td>{{item.restaurante}}</td>
+            <td>{{item.nota}}</td>
+        </tr>
+      {%endfor%}
+        <!-- <tr>
+            <td>Barraca de Strogonoff</td>
+            <td>8,0</td>
+        </tr>
+        <tr>
+            <td>Barraca de Yakissoba</td>
+            <td>8,0</td>
+        </tr>
+      <tr>
+            <td>Couve Flor</td>
+            <td>6,5</td>
+        </tr>
+      <tr>
+            <td>Bandejão</td>
+            <td>7,0</td>
+        </tr> -->
+    </tbody>
+</table>
+    <br>
+    <a href="/tabela">Adicionar Novo Estabelecimento na Tabela</a>
+    </div>
+<br>
+  <br>
+  <br>
+  <br>
+</body>
+
+</html>

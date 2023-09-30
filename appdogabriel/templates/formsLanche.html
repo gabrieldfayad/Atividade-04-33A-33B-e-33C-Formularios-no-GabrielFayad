@@ -1,0 +1,26 @@
+<h1>{{ action }}   Adicionar lugares de Lanche</h1>
+
+<form method="post">
+  {% csrf_token %}
+  <div>
+    <label>Título: </label>
+    <input name="titulo" value="{{lanches.titulo}}">
+  </div>
+
+  <div>
+    <label>Localização: </label>
+    <input name="localizacao" value="{{lanches.localizacao}}">
+  </div>
+
+  <div>
+    <label>Melhor Lanche: </label>
+    <input name="melhorlanche" value="{{lanches.melhorLanche}}">
+  </div>
+
+  <div>
+    <label>Nota: </label>
+    <input name="nota" type="number" value="{{lanches.nota}}">
+  </div>
+
+  <input type="submit" value="Adicionar">
+</form>
