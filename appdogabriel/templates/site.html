@@ -1,5 +1,6 @@
  <!DOCTYPE html>
 {% load static %}
+{% csrf_token %}
 <html>
 
 <head>
@@ -17,6 +18,10 @@
 <link href="https://fonts.googleapis.com/css2?family=Merriweather&display=swap" rel="stylesheet">
 
 <body>
+  {% if request.user.is_authenticated %}
+    <b>Bem-vindo, {{request.user.username}}</b> <br> 
+    <a href="/users/logout">Sair</a>
+  {% endif %}
   <div class="posicao_titulo">
   <h1>Os Melhores Lugares para Comer na PUC-Rio</h1>
   <h3><i>Por: Gabriel Dourado Fayad, graduando em Engenharia de Computação</i></h3>

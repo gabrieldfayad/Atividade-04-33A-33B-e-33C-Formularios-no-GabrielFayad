@@ -1,5 +1,8 @@
 from django.shortcuts import render, redirect
 from .models import Lanches, Almocos, Tabela
+from django.contrib.auth.models import User
+from django.contrib.auth import login, authenticate, logout
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def site(request):
@@ -8,6 +11,7 @@ def site(request):
   tabela = Tabela.objects.all()
   return render(request,"site.html", context={ "lanches": lanches , "almocos": almocos, "tabela": tabela})
 
+@login_required
 def create_almoco(request):
   if request.method == "POST":
     Almocos.objects.create(
@@ -19,6 +23,7 @@ def create_almoco(request):
     return redirect("site")
   return render(request, "formsAlmoco.html")
 
+@login_required
 def create_lanche(request):
   if request.method == "POST":
     Lanches.objects.create(
@@ -30,6 +35,7 @@ def create_lanche(request):
     return redirect("site")
   return render(request, "formsLanche.html")
 
+@login_required
 def create_tabela(request):
   if request.method == "POST":
     Tabela.objects.create(
@@ -39,6 +45,7 @@ def create_tabela(request):
     return redirect("site")
   return render(request, "formsTabela.html")
 
+@login_required
 def update_lanche(request, id):
   lanches = Lanches.objects.get(id = id), 
   if request.method == "POST":
@@ -50,6 +57,7 @@ def update_lanche(request, id):
       return redirect("site")
   return render(request, "formsLanche.html",  context={"action":"Atualizar", lanches:"lanche"})
 
+@login_required
 def update_almoco(request, id):
   almocos = Almocos.objects.get(id = id), 
   if request.method == "POST":
@@ -61,6 +69,7 @@ def update_almoco(request, id):
       return redirect("site")
   return render(request, "formsAlmoco.html",  context={"action":"Atualizar", almocos: "almoco"})
 
+@login_required
 def delete_lanche(request, id):
   lanches = Almocos.objects.get(id = id), 
   if request.method == "POST":
@@ -68,10 +77,42 @@ def delete_lanche(request, id):
       return redirect("site")
   return render(request, "areyousureLanche.html",context={lanches:"lanche"}) 
 
+@login_required
 def delete_almoco(request, id):
   almocos = Almocos.objects.get(id = id), 
   if request.method == "POST":
       almocos.delete()
       return redirect("site")
-  return render(request, "areyousureAlmoco.html",context={almocos:"almoco"}) 
-  
+  return render(request, "areyousureAlmoco.html",context={almocos:"almoco"})
+
+def create_user(request):
+  if request.method == "POST":
+    user = User.objects.create_user(
+      request.POST['username'],
+      request.POST['email'],
+      request.POST['password']);
+    user.save()
+    return redirect("login")
+  return render(request, "register.html", context={"action":"Adicionar"})
+
+def login_user(request):
+  if request.method == "POST":
+    user = authenticate(
+      username = request.POST["username"],
+      password = request.POST["password"]
+    )
+
+    if user != None:
+      login(request, user)
+    else:
+      return render(request, "login.html", context={"error_msg": "Usuário não existe"})
+    print(request.user)
+    print(request.user.is_authenticated)
+    if request.user.is_authenticated:
+      return redirect("site")
+    return render(request, "login.html", context={"error_msg": "Usuário não pode ser autenticado"})
+  return render(request, "login.html")
+
+def logout_user(request):
+  logout(request)
+  return redirect("login")
