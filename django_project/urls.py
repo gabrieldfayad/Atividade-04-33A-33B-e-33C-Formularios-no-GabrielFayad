@@ -25,6 +25,4 @@ urlpatterns = [
     path('lanche/update/<id>', views.update_lanche),
     path('almoco/update/<id>', views.update_almoco),
     path('lanche/delete/<id>', views.delete_lanche),
-    path('almoco/delete/<id>', views.delete_almoco),
-    path('admin/', admin.site.urls),
-]
+    path('almoco/delete/<id>', views.delete_almoco)]
